@@ -20,12 +20,20 @@ public class MainActivity extends AppCompatActivity {
         button2 = findViewById(R.id.button2);
         textView5 = findViewById((R.id.textView5));
         textView6 = findViewById((R.id.textView6));
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View button) {
                 Intent intent = new Intent(getApplicationContext(), Registration.class);
                 startActivity(intent);
 
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent login = new Intent(getApplicationContext(), Login.class)
             }
         });
     }
