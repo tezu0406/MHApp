@@ -130,7 +130,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/DOB"
+        android:id="@+id/DOBLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -143,7 +143,6 @@
             android:id="@+id/DOB"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-10dp"
             android:layout_weight="1"
             android:text="Date Of Birth:"
             android:textAlignment="center"
@@ -173,20 +172,20 @@
         app:layout_constraintTop_toTopOf="@id/RegHead">
 
         <TextView
-            android:id="@+id/LastName"
+            android:id="@+id/Username"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Last Name:"
+            android:text="Username:"
             android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/editTextLastName"
+            android:id="@+id/editTextUsername"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Enter your last name"
+            android:hint="Enter your username"
             android:inputType="textPersonName"
             android:textColorHint="#717171"
             android:textSize="14dp" />
@@ -203,20 +202,20 @@
         app:layout_constraintTop_toTopOf="@id/RegHead">
 
         <TextView
-            android:id="@+id/FirstName"
+            android:id="@+id/Name"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="First Name: "
+            android:text="Name: "
             android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/editTextFirstName"
+            android:id="@+id/editTextName"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Enter your first name"
+            android:hint="Enter your full name"
             android:inputType="textPersonName"
             android:textColorHint="#717171"
             android:textSize="14dp" />
@@ -250,10 +249,12 @@
         android:id="@+id/LoginRedirect"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
+        android:layout_marginBottom="28dp"
         android:text="Login"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="643dp" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/Member"
@@ -265,7 +266,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonReg"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/ButtonReg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,22 +10,20 @@ import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button button, button2;
-    private TextView textView6, textView5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button = findViewById(R.id.button);
-        button2 = findViewById(R.id.button2);
-        textView5 = findViewById((R.id.textView5));
-        textView6 = findViewById((R.id.textView6));
+        Button button = findViewById(R.id.button);
+        Button button2 = findViewById(R.id.button2);
+        TextView textView5 = findViewById((R.id.textView5));
+        TextView textView6 = findViewById((R.id.textView6));
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View button) {
-                Intent intent = new Intent(getApplicationContext(), Registration.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                Intent register = new Intent(getApplicationContext(), Registration.class);
+                startActivity(register);
 
             }
         });
@@ -33,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent login = new Intent(getApplicationContext(), Login.class)
+                Intent login = new Intent(getApplicationContext(), login.class);
+                startActivity(login);
             }
         });
     }

@@ -11,45 +11,81 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Registration extends AppCompatActivity {
-    private Button ButtonReg, LoginRedirect;
-    private TextView FirstName, LastName, DOB, EmailId, PhoneNo, pw, rePw;
-    private EditText editTextFirstName, editTextLastName, editTextDate, editTextPhoneNo, editTextTextEmailAddress, editTextPassword, editTextRePassword;
-
+    DBHelper DB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        ButtonReg = findViewById(R.id.ButtonReg);
-        LoginRedirect = findViewById(R.id.LoginRedirect);
-        FirstName = findViewById(R.id.FirstName);
-        LastName = findViewById(R.id.LastName);
-        DOB = findViewById(R.id.DOB);
-        EmailId = findViewById(R.id.EmailId);
-        PhoneNo = findViewById(R.id.PhoneNo);
-        pw = findViewById(R.id.pw);
-        rePw = findViewById(R.id.rePw);
-        editTextFirstName = findViewById(R.id.editTextFirstName);
-        editTextLastName = findViewById(R.id.editTextLastName);
-        editTextDate = findViewById(R.id.editTextDate);
-        editTextPhoneNo = findViewById(R.id.editTextPhoneNo);
-        editTextTextEmailAddress = findViewById(R.id.editTextTextEmailAddress);
-        editTextPassword = findViewById(R.id.editTextPassword);
-        editTextRePassword = findViewById(R.id.editTextRePassword);
+        Button buttonReg = findViewById(R.id.ButtonReg);
+        Button loginRedirect = findViewById(R.id.LoginRedirect);
+        TextView Name = findViewById(R.id.Name);
+        TextView Username = findViewById(R.id.Username);
+        TextView DOB = findViewById(R.id.DOB);
+        TextView emailId = findViewById(R.id.EmailId);
+        TextView phoneNo = findViewById(R.id.PhoneNo);
+        TextView pw = findViewById(R.id.pw);
+        TextView rePw = findViewById(R.id.rePw);
+        EditText editTextName = findViewById(R.id.editTextName);
+        EditText editTextUsername = findViewById(R.id.editTextUsername);
+        EditText editTextDate = findViewById(R.id.editTextDate);
+        EditText editTextPhoneNo = findViewById(R.id.editTextPhoneNo);
+        EditText editTextTextEmailAddress = findViewById(R.id.editTextTextEmailAddress);
+        EditText editTextPassword = findViewById(R.id.editTextPassword);
+        EditText editTextRePassword = findViewById(R.id.editTextRePassword);
+        DB = new DBHelper(this);
 
-        ButtonReg.setOnClickListener(new View.OnClickListener() {
+        buttonReg.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View ButtonReg) {
-                Toast.makeText(Registration.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                //Intent homepage = new Intent(getApplicationContext(), homepage.class);
-                //startActivity(homepage);
-            }
+            public void onClick(View view) {
+                String name = editTextName.getText().toString();
+                String username = editTextUsername.getText().toString();
+                int date = editTextDate.getText().toString().isEmpty() ? 0 : Integer.parseInt(editTextDate.getText().toString());
+                int phone = editTextPhoneNo.getText().toString().isEmpty() ? 0 : Integer.parseInt(editTextPhoneNo.getText().toString());;
+                String email = editTextTextEmailAddress.getText().toString();
+                String password = editTextPassword.getText().toString();
+                String rePassword = editTextRePassword.getText().toString();
+                if(Name.equals("")
+                        ||Username.equals("")
+                        ||DOB.equals("")
+                        ||emailId.equals("")
+                        ||phoneNo.equals("")
+                        ||pw.equals("")
+                        ||rePw.equals("")
+                        ||editTextName.equals("")
+                        ||editTextUsername.equals("")
+                        ||editTextDate.equals("")
+                        ||editTextPhoneNo.equals("")
+                        ||editTextTextEmailAddress.equals("")
+                        ||editTextPassword.equals("")
+                        ||editTextRePassword.equals(""))
+                    Toast.makeText(Registration.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
+                else{
+                    if(editTextPassword.equals(editTextRePassword)){
+                        Boolean checkuser = DB.checkusername(username);
+                        if(!checkuser){
+                            Boolean insert = DB.insertData(name,username,date,phone,email,password,rePassword);
+                            if(insert){
+                                Toast.makeText(Registration.this, "Registered successfully", Toast.LENGTH_SHORT).show();
+                                //Intent intent = new Intent(getApplicationContext(),homepage.class);
+                                //startActivity(intent);
+                            }else{
+                                Toast.makeText(Registration.this, "Registration failed", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else{
+                            Toast.makeText(Registration.this, "User already exists! please sign in", Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        Toast.makeText(Registration.this, "Passwords not matching", Toast.LENGTH_SHORT).show();
+                    }
+                } }
         });
         
-        LoginRedirect.setOnClickListener(new View.OnClickListener() {
+        loginRedirect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View LoginRedirect) {
-                //Intent loginRedirect =  new Intent(getApplicationContext(), login.class);
-                //startActivity(loginRedirect);
+                Intent loginRedirect =  new Intent(getApplicationContext(), login.class);
+                startActivity(loginRedirect);
             }
         });
 
